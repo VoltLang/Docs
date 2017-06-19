@@ -24,7 +24,7 @@ The source code is all available, so the absence of a platform is certainly no i
 
 #### Linux Dependency Installation
 
-If you are on **Ubuntu** or a derivative,
+If you are on Ubuntu or a derivative,
 
 	sudo apt-get install dmd llvm nasm git
 
@@ -49,6 +49,7 @@ If it isn't for some reason, you can try `brew install homebrew/versions/llvm39`
 If you're not using Homebrew, download LLVM from the [LLVM homepage](http://llvm.org), and put the `bin` folder inside the unpacked tarball on the `$PATH`.
 
 [You'll also need to install git.](https://git-scm.com/download/mac)
+
 
 #### Windows Dependency Installation
 
