@@ -20,7 +20,7 @@ The source code is all available, so the absence of a platform is certainly no i
 
 ### Dependencies
 
-*Volta* depends on [dmd](dlang.org), [llvm](llvm.org), and the [NASM](nasm.us). We'll also want [git](git-scm.com) to fetch the code. The next sections will detail how to install these for each platform.
+*Volta* depends on [dmd](http://dlang.org), [llvm](http://llvm.org), and the [NASM](http://nasm.us). We'll also want [git](http://git-scm.com) to fetch the code. The next sections will detail how to install these for each platform.
 
 #### Linux Dependency Installation
 
@@ -36,7 +36,7 @@ will do it. Otherwise consult your OS documentation on how to install these pack
 
 #### OS X Dependency Installation
 
-The easiest way of installing DMD on OS X is using [Homebrew](brew.sh). With brew installed,
+The easiest way of installing DMD on OS X is using [Homebrew](http://brew.sh). With brew installed,
 
 	brew install dmd nasm
 
@@ -46,7 +46,7 @@ Volt needs LLVM version 3.9, `brew install llvm` should be up to date enough.
 
 If it isn't for some reason, you can try `brew install homebrew/versions/llvm39`, then add `/usr/local/Cellar/llvm39/3.9.X/lib/llvm-3.9X/bin` on your `$PATH` (replacing the `X`s with the real version). The reason for doing so is, that Homebrew doesn’t properly link non-core-only versions - like LLVM v3.9? if it comes from `homebrew/versions/llvm39`. For example, `llvm-config` won’t be present, but only `llvm-config-3.9`.
 
-If you're not using Homebrew, download LLVM from the [LLVM homepage](llvm.org), and put the `bin` folder inside the unpacked tarball on the `$PATH`.
+If you're not using Homebrew, download LLVM from the [LLVM homepage](http://llvm.org), and put the `bin` folder inside the unpacked tarball on the `$PATH`.
 
 [You'll also need to install git.](https://git-scm.com/download/mac)
 
