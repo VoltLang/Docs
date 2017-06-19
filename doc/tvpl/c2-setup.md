@@ -51,7 +51,7 @@ If you're not using Homebrew, download LLVM from the [LLVM homepage](http://llvm
 [You'll also need to install git.](https://git-scm.com/download/mac)
 
 
-#### Windows Dependency Installation
+### Windows Dependency Installation
 
 Install [DMD.](http://dlang.org/download.html).
 
