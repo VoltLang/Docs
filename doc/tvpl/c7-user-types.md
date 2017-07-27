@@ -216,6 +216,68 @@ Output:
 
 The `doInt` and `doString` functions do not need to know that the class `TheClass` exists. It implements the `interface` it cares about, and that's good enough. This allows you to compartmentalise your class designs.
 
+## Operator Overloading
+
+When working with builtin types, we can use natural 'operators', like `+` to perform addition, or `[3]` to look up the third item in an array. It can be useful to make our classes and structs use the same operators; `obj + obj` can be more succinct than `obj.add(obj)`.
+
+To implement these operators, we define a member function with a name corresponding to the operator we wish to overload. When our type is involved in an operation with an operator, the compiler will check to see if the function for that operation has been defined. If it has, it will rewrite the expression to call your code. A simple example:
+
+	struct Point2D
+	{
+		x, y: i32;
+		fn opAdd(p: Point2D) Point2D
+		{
+			result: Point2D;
+			result.x = this.x + p.x;
+			result.y = this.y + p.y;
+			return result;
+		}
+	}
+
+	fn main() i32
+	{
+		a, b: Point2D;
+		a.x = 12; b.x = 6;
+		c := a + b;  // c is a Point2D with an x of 18 and a y of 0.
+		return 0;
+	}
+
+Now we will go over the operators that can be overloaded, and the function name to use. If the type is unspecified, then it can be most anything -- the same type, a primitive, etc: whatever makes sense for that object and operator. If the return type of a function is not explicitly mentioned, it can be anything too, not just `void`.
+
+### Binary Operator Overloads
+
+`==` uses `fn opEquals(a) bool`, where `a` is the right side of the equation.
+
+`+` uses `fn opAdd(a)`, where `a` is the right side of the equation.
+
+`-` uses `fn opSub(a)`, where `a` is the right side of the equation.
+
+`*` uses `fn opMul(a)`, where `a` is the right side of the equation.
+
+`/` uses `fn opDiv(a)`, where `a` is the right side of the equation.
+
+`+=` uses `fn opAddAssign(a)`, where `a` is the right side of the equation.
+
+`-=` uses `fn opSubAssign(a)`, where `a` is the right side of the equation.
+
+`*=` uses `fn opMulAssign(a)`, where `a` is the right side of the equation.
+
+`/=` uses `fn opDivAssign(a)`, where `a` is the right side of the equation.
+
+`>=`, `>`, `<`, and `<=` all use `fn opCmp(a) i32`, where `a` is the right side of the equation, and the result is less than 0 if the object that opCmp belongs to is less than the argument, more than 1 if it's greater, and 0 in all other cases.
+
+### Postfix Operator Overloads
+
+`[]` uses `fn opIndex(a)` where `a` is the value that is in the brackets, indexing the object.
+
+`[a .. b]` uses `fn opSlice(a, b)` where `a` is the left portion of the slice, and `b` is the right portion.
+
+`$`, while not strictly a postfix operator, only occurs in index operations, and can be overloaded using `fn opDollar()`.
+
+### Unary Operator Overloads
+
+`-` uses `fn opNeg()`. Note that this is the unary minus (`a := -obj;`), not the binary subtraction operator.
+
 # Wrapping Up
 
 [Next, some parting remarks and some useful tools.](conclusion.html)
