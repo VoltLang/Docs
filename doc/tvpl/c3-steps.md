@@ -157,6 +157,28 @@ The `12` in the example above is the length of the array; how many values it hol
 
 	writeln(months.length);  // output:12
 
+## Strings
+
+Strings are series of characters. Insert an example of string usage here.
+
+### Composable Strings
+
+Composable strings are a special kind of string that allows you to easily display the results of expression.
+
+	writefln("${2*3}");  // output:6
+
+A composable string looks like a regular string, except it contains a composable string component -- an expression, wrapped in `${` and `}`. In a regular composable string, everything has to be known at compile time. A constant, in other words.
+
+However, it is very useful to be able to display runtime values. If you precede a composable string with `new`, you can display non-constant values. The `new` is to remind you that this isn't free -- it will allocate memory, and call into runtime functions. A composable string without `new` is identical to a regular string literal at the end of compilation, no runtime overhead occurs.
+
+	fn main(args: string[]) i32
+	{
+		writefln(new "${args.length * 2}");
+		return 0;
+	}
+
+Composable strings can format arrays, associative arrays, `union`s, `struct`s, `class`es, `enum`s, primitive types (`i32`, `f32`, etc), and pointers. Trying to process anything else in a composable string component is an error. Most of the way things are formatted are as you'd expect [EXAMPLES HERE], but special note should be made of `union`, `struct`, and `class`es. By default, they'll just display the name of the type [EXAMPLE]. But if a `toString` function is defined, that takes no arguments, and returns a string, then that function will be called and the result will be used. [EXAMPLE]
+
 ## Foreach Statement
 
 So far the programs we've written have all been very linear. They start at the top, and run all our code until they get to the end. What if we took our previous example, and wanted to display all the months. We *could* do something like this:
