@@ -159,7 +159,7 @@ The `12` in the example above is the length of the array; how many values it hol
 
 ## Strings
 
-Strings are series of characters. Insert an example of string usage here.
+Strings are series of characters. You've used these already. Strings like `"January"`, `"Hello World"`, and `"こんにちは、世界"` are simple; you see what they are. There are ways of making more complicated strings, however.
 
 ### Composable Strings
 
@@ -177,7 +177,20 @@ However, it is very useful to be able to display runtime values. If you precede 
 		return 0;
 	}
 
-Composable strings can format arrays, associative arrays, `union`s, `struct`s, `class`es, `enum`s, primitive types (`i32`, `f32`, etc), and pointers. Trying to process anything else in a composable string component is an error. Most of the way things are formatted are as you'd expect [EXAMPLES HERE], but special note should be made of `union`, `struct`, and `class`es. By default, they'll just display the name of the type [EXAMPLE]. But if a `toString` function is defined, that takes no arguments, and returns a string, then that function will be called and the result will be used. [EXAMPLE]
+Composable strings can format arrays, associative arrays, `union`s, `struct`s, `class`es, `enum`s, primitive types (`i32`, `f32`, etc), and pointers. Trying to process anything else in a composable string component is an error. Most of the way things are formatted are as you'd expect.
+
+	"${3+2}"          // "5"
+	"${Enum.Member}"  // "Member"
+	"${[1, 2, 3]}"    // "[1, 2, 3]"
+
+But special note should be made of `union`, `struct`, and `class`es. By default, they'll just display the name of the type [EXAMPLE]. But if a `toString` function is defined, that takes no arguments, and returns a string, then that function will be called and the result will be used.
+
+	struct A {}
+	struct B { fn toString() string { return "hello"; }
+	a: A;
+	b: B;
+	astr := new "${a}";  // "A";
+	bstr := new "${b}";  // "hello";
 
 ## Foreach Statement
 
