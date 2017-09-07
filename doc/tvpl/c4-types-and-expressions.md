@@ -97,6 +97,41 @@ The 'escape' character is a backslash (`\`), this lets you insert various specia
 	\r Carriage return
 	\t A tab
 
+### Null
+
+`null` is a special kind of value. For several reference types (like pointers, classes, and arrays), `null` represents an uninitialised type.
+
+	ptr: i32* = null;
+	// *ptr = 2;  // Crash!
+	obj: MyObject = null;
+	// obj.someMethod();  // Crash!
+
+Note that in the examples above, assigning to `null` is redundant: both pointers and class instances default to a value of `null` unless otherwise assigned to.
+
+One interaction of `null` that is worth noting is with array types. `null`, just as before represents an uninitialised type:
+
+	arr: i32[] = null;
+	// arr[0] = 3;  // Crash!
+
+The main difference being that an uninitialised can be operated on by several array operations without error. You can check the `length` field of an array initialised with `null` (`0`), and you can check the `ptr` field too (naturally, `null`). There are also operations that are valid with an empty array; concatenation (the `~` operator combines two arrays into one array), for example:
+
+	arr: i32[] = null;  // Again, technically redundant here.
+	arr ~= 1;  // arr is now [1], with a valid ptr field.
+
+Note that in expressions involving arrays of arrays, `null` has the type of the *whole* array, not the base type. This might seem obvious given `i32[]`, but given:
+
+	arr: i32[][];
+	arr ~= null;
+
+The `length` of `arr` is `0`, not `1`. To see why, simply expand out the expression by hand:
+
+	arr = arr ~ cast(i32[][])null;
+
+Two empty `i32[][]` concatenated together equals one empty array. If what you want to do is concatenate an empty `i32[]` to a list of `i32[]`s, then you can explicitly `cast` the `null` yourself:
+
+	arr: i32[][];
+	arr ~= cast(i32[])null;  // arr.length == 1
+
 ### Remaining Primitives
 
 The last two primitives are `bool` and `void`.
