@@ -89,6 +89,11 @@ Output:
 
 If the last parameter of a function is an array that ends in `...`, the function is said to be a homogenous variadic function. The final array can be passed multiple values, and then it can treat it as a regular array, or an array can also be passed directly.
 
+One restriction to note, is that `null` may not be passed as an argument in the variadic portion. This is because `null` is also a way of representing empty arrays, and the results may not be what you're expecting. If you want an empty array, simply don't pass any variadic arguments, and if you want a `null` argument, simply `cast` it:
+
+	fn foo(arr: MyObject[]...) { ... }
+	foo(cast(MyObject)null);
+
 ## Acceptable Ref and Out Parameters
 
 	fn plusOne(ref i: i32)
