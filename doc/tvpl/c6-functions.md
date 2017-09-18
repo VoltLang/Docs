@@ -126,3 +126,28 @@ It's as if the code was:
 	fn foo();
 
 The above two declarations are identical, the second is shorthand for the first.
+
+## Function Overloading
+
+Multiple functions in the same module can share the same name, if their parameters are sufficiently different to distinguish them from one another.
+
+	fn print(val: string) { ... }
+	fn print(val: i32) { ... }
+	fn print() { ... }
+
+	fn main() i32
+	{
+		print(32);  // Call the second function.
+		print();  // Call the third function.
+		print("hello");  // Call the first function.
+		return 0;
+	}
+
+Functions can't be overloaded by return type. Note that overloading is checked at the call point, so you can define multiple functions that have the same parameters but different return types...
+
+	fn foo() i32 { return 0; }
+	fn foo() bool { return true; }
+
+The error will only occur once someone tries to *call* those functions:
+
+	foo();  // error: two functions match call

@@ -24,6 +24,8 @@ This guide is intended for close reading by beginning programmers, and for skimm
 
 [Chapter 6 - Functions](c6-functions.html) - Learn about a fundamental building block of Volt program design.
 
-[Chapter 7 - User Defined Types](c7-user-types.html) - Define your own types, and their behaviour.
+[Chapter 7 - Attributes](c7-attributes.html) - Affect various ways the world sees your code.
+
+[Chapter 8 - User Defined Types](c8-user-types.html) - Define your own types, and their behaviour.
 
 [Conclusion](conclusion.html) - Some parting remarks, and some useful links.

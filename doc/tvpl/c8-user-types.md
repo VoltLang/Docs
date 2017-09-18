@@ -1,8 +1,8 @@
 ---
-title: Chapter 7 - User Defined Types
+title: Chapter 8 - User Defined Types
 layout: page
 ---
-# Chapter 7 - User Defined Types
+# Chapter 8 - User Defined Types
 
 Volt has several facilities for users to create more complex custom types.
 
