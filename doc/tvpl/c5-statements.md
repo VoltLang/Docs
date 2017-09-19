@@ -141,6 +141,47 @@ All of the sections are optional. If the condition is empty, it is considered to
 	for (;;) {
 	}
 
+
+## Implicit Casts To Bool In If, For, While, and Do While Statements.
+
+The `if`, `for`, `while` and `do .. while` statements all share a common property: they each have an expression that dictates how they behave, depending on if that expression is `true` or `false`. To aid in code brevity, the implicit boolean cast behaviour in these expression differs to regular implicit rules.
+
+These conversions fall into three broad categories.
+
+### Integral primitive types.
+
+An `i32`, for example. The rules here are simple. A value of `0` is considered `false`, anything else is considered `true`. Note that the value must be primitive. An `f32` will not implicitly convert.
+
+	if (integer) { ... }
+
+Becomes equivalent to:
+
+	if (integer != 0) { ... }
+
+### Pointer and reference types.
+
+Any kind of pointer, or an instance of a `class`. Again, the rules are simple. A value of `null` is considered `false`, anything else is considered `true`.
+
+	if (ptr) { ... }
+
+Becomes equivalent to:
+
+	if (ptr !is null) { ... }
+
+### Arrays
+
+If an array's `length` parameter is greater than `0`, it is considered `true`. Otherwise, it is considered `false`. The value of `ptr` is entirely irrelevant to whether or not the array is considered `true` or `false`.
+
+	if (array) { ... }
+
+Becomes equivalent to:
+
+	if (array.length > 0) { ... }
+
+### Other
+
+Anything else not mentioned above (other than `bool` expressions) will generated an error if used uncased in one of the afore mentioned statements.
+
 ## Foreach Statement
 
 We've been introduced to the `foreach` statement. Here's a different form that is often useful:
