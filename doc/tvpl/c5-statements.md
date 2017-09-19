@@ -148,9 +148,9 @@ The `if`, `for`, `while` and `do .. while` statements all share a common propert
 
 These conversions fall into three broad categories.
 
-### Integral primitive types.
+### Primitive types.
 
-An `i32`, for example. The rules here are simple. A value of `0` is considered `false`, anything else is considered `true`. Note that the value must be primitive. An `f32` will not implicitly convert.
+An `i32`, for example. The rules here are simple. A value of `0` is considered `false`, anything else is considered `true`.
 
 	if (integer) { ... }
 
