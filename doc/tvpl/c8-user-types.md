@@ -272,6 +272,10 @@ Now we will go over the operators that can be overloaded, and the function name 
 
 `[a .. b]` uses `fn opSlice(a, b)` where `a` is the left portion of the slice, and `b` is the right portion.
 
+If you're assigning to any of the above two (e.g. you have `opIndex` defined and you do `s[0] = 3`) then Volt will look for `opIndexAssign` and `opSliceAssign`, which will take the right hand side of the assign as their last argument. Their return types must match the `opIndex` or `opSlice` function. Assign operators like `+=` or `-=` will be rewritten so that the last argument is what you'd expect.
+
+e.g. `s[0] -= 5` is rewritten to `s.opIndexAssign(0, s.opIndex(0) - 5)`.
+
 `$`, while not strictly a postfix operator, only occurs in index operations, and can be overloaded using `fn opDollar()`.
 
 ### Unary Operator Overloads
