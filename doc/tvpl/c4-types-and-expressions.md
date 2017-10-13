@@ -46,11 +46,11 @@ Underscores are ignored, this can help with larger numbers:
 	1000_000_000  // same as '1000000000'
 	3_2  // same as '32'
 
-A constant starting with `0x` is a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) literal:
+A literal starting with `0x` is a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) literal:
 
 	0xFF  (same as 255)
 
-A constant starting with `0b` is a [binary](https://en.wikipedia.org/wiki/Binary_number) literal:
+A literal starting with `0b` is a [binary](https://en.wikipedia.org/wiki/Binary_number) literal:
 
 	0b10  (same as 2)
 
@@ -180,6 +180,66 @@ An [associative array](https://en.wikipedia.org/wiki/Associative_array) associat
 #### Associative Array Literals
 
 Like the array literals, associative array literals open with `[`, have values separated by `,`, and end with `]`. The values of an associative array literal have the key and value separated by a `:` character. So `[1:"hello", 2:"goodbye"]` would be a `string[i32]`, that has a key of "hello" associated with 1, and so on.
+
+## Storage Type
+
+The three storage types are `const`, `immutable`, and `scope`. These can be applied to a type using parens. `const(i32[])*` is a pointer to const array of `i32`s. Now, a quick overview of the meaning of each of these types.
+
+### Const
+
+A `const` type may not be modified.
+
+```volt
+a: const(i32) = 12;  // A const type may be initialised.
+a = 6;  // Error, cannot modify const.
+```
+
+### Immutable
+
+An `immutable` type may not be modified. What separates this from `const` is that an `immutable` type instance cannot be constructed of a type that could be modified. If we think of a variable as a window into memory, a `const` window guarantees that the window marked as `const` will not be used to modify memory, but another window might modify that memory. An `immutable` window, on the other hand, makes the same guarantee that it will not be used to change that memory, but adds a further guarantee: the memory it's looking at will not be changed by anyone.
+
+```volt
+i: i32 = 12;
+ip: const(i32)* = &i;
+assert(*ip == 12);
+i = 6;
+assert(*ip == 6);
+```
+
+Whereas with `immutable`:
+
+```volt
+i: i32 = 12;
+ip: immutable(i32)* = &i;  // error, cannot convert i32* to immutable(i32)*.
+```
+
+Short of explicitly going over the type system's head by `cast`ing away `immutable`, `immutable` values won't change.
+
+### Scope
+
+A `scope` value can be modified, but it cannot become non-`scope`. This is helpful in ensuring users don't pass stack memory or the like to something that will be stored away, thus leading to stack corruption.
+
+### Mutable Indirection.
+
+The above rules, where a type 'cannot' be converted to another can be elided if a type has no 'mutable indirection'. A type with mutable indirection can change memory. A pointer, an array, and so on. A purely value type, like an `i32`, or a `struct` that only has `i32` members is said to be non mutably indirect, and the type system is more lenient when dealing with them.
+
+Compare assigning an immutable array...
+
+```volt
+ia: immutable(i32[]);
+ib: i32[] = ia;  // error!
+```
+
+...to assigning an immutable integer:
+
+```volt
+i: immutable(i32);
+j: i32 = i;
+```
+
+The above is allowed, because `j` can not impact `i`'s value in any way.
+
+###
 
 ## Expressions
 
