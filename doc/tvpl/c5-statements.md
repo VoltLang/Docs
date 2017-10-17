@@ -55,6 +55,53 @@ Output:
 
 	big n
 
+## Import Statement
+
+We touched on `import` statements earlier in chapter 3, but there's more too them than 'import watt.io'.  
+At the top of this chapter we said that statements affect flow of execution. At first blush, this doesn't seem to be true of `import` statements; they don't *do* anything on their own, do they?
+
+In fact, an `import` statement modifies every single lookup of an identifier in the module. 'Import' is perhaps a slight misnomer, then, as what the `import` statement does is add a scope (a place where names are stored) to the places the compiler looks when you type a name that isn't a keyword or builtin type.
+
+### Simple Import
+
+This is what we've been using.
+
+    import mymodule;
+
+Any `public` symbol that has a name that matches a lookup will be retrieved, unless a local declaration (one in the same module) exists by that name. Local declarations always trump something retrieved by import. In this way, importing code won't silently change behaviour.
+
+### Alias Import
+
+An alias `import` is like a simple one, but gives a list of symbols.
+
+	import mymodule : a, b;
+
+Only symbols included in the list after the colon will be considered. The aliases can also be renamed.
+
+	import mymodule : newName = oldName;
+
+The declaration `mymodule.oldName` is accessible, but only through `newName`. This is helpful to avoid name collisions, or simply to make code prettier.
+
+### Bind Import
+
+	import bindname = mymodule;
+
+Now to use something inside of `mymodule`, you have to go through `bindname`:
+
+	bindname.someFunction(12);
+
+You can associate multiple modules with a single bindname by wrapping a list in `[` and `]`:
+
+	import bindname = [modulea, moduleb];
+
+Liberal use of bind imports is recommended, as it keeps dependencies obvious, code clean, and makes detecting unused `import`s very easy.
+
+### Public Import
+
+By default, `import` statements are `private` -- they only affect the module with the import statement. If you prepend an `import` statement with `public`, to anyone importing a module, it will be as if they also imported all of the public imports too.
+
+	public import mymodule;
+
 ## Assert Statement
 
 The `assert` statement verifies a condition. If the condition is false, the execution of the program is halted. An optional message of your own can be supplied to be displayed. Use this for things that should not happen; they help point out bugs earlier. In general, the earlier a bug is found, the easier it is to fix. So use them liberally. Depending on the compiler, these may or may not be included in release builds, so never rely on them for error handling.
