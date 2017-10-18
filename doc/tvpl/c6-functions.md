@@ -12,7 +12,7 @@ The compiler doesn't actually need the block statement (called the 'body') of a 
 
 	extern (C) fn printf(const(char)*, ...) i32;
 
-A lot of that is new, but just focus on the semicolon (`;`) where the body (`{}`) would be. This tells the compiler that the function's code will be given later, and tells the linker (the program that makes a working executable out of the compiler's output) to wire it up. In this case, `printf`, a function provided by your systems C library (hence `extern (C)`).
+A lot of that is new, but just focus on the semicolon (`;`) where the body (`{}`) would be. This tells the compiler that the function's code will be given later, and tells the linker (the program that makes a working executable out of the compiler's output) to wire it up. In this case, `printf`, a function provided by your system's [C](https://en.wikipedia.org/wiki/C_(programming_language)) library (hence `extern (C)`).
 
 Functions can also be declared *inside* other functions. These are known as 'inline functions', and can be very useful.
 
