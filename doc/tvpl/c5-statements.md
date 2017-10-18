@@ -409,3 +409,7 @@ Output:
 
 	hi!
 	bye!
+
+---
+
+[PREV](c4-types-and-expressions) [NEXT](c6-functions.html)

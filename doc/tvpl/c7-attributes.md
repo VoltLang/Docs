@@ -88,3 +88,7 @@ Multiple functions with the same name, different arguments, but different access
 	public fn foo(a: i32) {}  // error!
 
 The only exceptions are constructors. This is because a `private` constructor is a way of 'disabling' a constructor.
+
+---
+
+[PREV](c6-functions.html) [NEXT](c8-user-types.html)

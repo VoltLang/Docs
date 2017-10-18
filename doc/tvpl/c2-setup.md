@@ -117,3 +117,7 @@ If an error is produced, make sure your code matches what's written above exactl
 ## Finding Help
 
 In programming, as in life, things often don't work how you'd expect. Before you ask for help make sure you've tried to solve your problem on your own; problem solving is an important part of writing programs. But if you're truly stumped, the best place to ask for help is on the `#volt` IRC chat channel, hosted on [Freenode](https://webchat.freenode.net/). You can connect with a desktop client, or follow that link to use Freenode's own web client.
+
+---
+
+[PREV](c1-intro.html) [NEXT](c3-steps.html)

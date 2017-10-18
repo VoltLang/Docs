@@ -151,3 +151,7 @@ Functions can't be overloaded by return type. Note that overloading is checked a
 The error will only occur once someone tries to *call* those functions:
 
 	foo();  // error: two functions match call
+
+---
+
+[PREV](c5-statements.html) [NEXT](c7-attributes.html)

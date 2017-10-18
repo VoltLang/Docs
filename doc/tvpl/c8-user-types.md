@@ -284,4 +284,8 @@ e.g. `s[0] -= 5` is rewritten to `s.opIndexAssign(0, s.opIndex(0) - 5)`.
 
 # Wrapping Up
 
-[Next, some parting remarks and some useful tools.](conclusion.html)
+Next, some parting remarks and some useful tools.
+
+---
+
+[PREV](c8-user-types.html) [NEXT](conclusion.html)

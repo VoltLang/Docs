@@ -12,7 +12,7 @@ This guide is intended for close reading by beginning programmers, and for skimm
 
 ## Contents
 
-[Chapter 1 - Introduction and Table of Contents](c1-intro.html) - You are here.
+**Chapter 1 - Introduction and Table of Contents** - You are here.
 
 [Chapter 2 - Getting Set Up](c2-setup.html) - Learn how to install a Volt environment.
 
@@ -29,3 +29,7 @@ This guide is intended for close reading by beginning programmers, and for skimm
 [Chapter 8 - User Defined Types](c8-user-types.html) - Define your own types, and their behaviour.
 
 [Conclusion](conclusion.html) - Some parting remarks, and some useful links.
+
+---
+
+[NEXT](c2-setup.html)

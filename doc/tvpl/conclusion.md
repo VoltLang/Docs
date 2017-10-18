@@ -17,3 +17,7 @@ Along with the core toolchain, there are a few other libraries and tools that yo
 [Fourier](https://github.com/VoltLang/Fourier) is a tool that can help generate modules automatically that will let you use C libraries from Volt. You can write these by hand, but this can be a very tedious task; Fourier may be able to save you a lot of time!
 
 [Amp](https://github.com/VoltLang/Amp) is a collection of maintained bindings to popular libraries, like SDL and OpenGL.
+
+---
+
+[PREV](c8-user-types.html)
