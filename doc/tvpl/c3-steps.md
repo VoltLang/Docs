@@ -183,7 +183,7 @@ Composable strings can format arrays, associative arrays, `union`s, `struct`s, `
 	"${Enum.Member}"  // "Member"
 	"${[1, 2, 3]}"    // "[1, 2, 3]"
 
-But special note should be made of `union`, `struct`, and `class`es. By default, they'll just display the name of the type [EXAMPLE]. But if a `toString` function is defined, that takes no arguments, and returns a string, then that function will be called and the result will be used.
+But special note should be made of `union`, `struct`, and `class`es. By default, they'll just display the name of the type. But if a `toString` function is defined, that takes no arguments, and returns a string, then that function will be called and the result will be used.
 
 	struct A {}
 	struct B { fn toString() string { return "hello"; }
