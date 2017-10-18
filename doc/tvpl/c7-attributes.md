@@ -91,4 +91,4 @@ The only exceptions are constructors. This is because a `private` constructor is
 
 ---
 
-[PREV](c6-functions.html) [NEXT](c8-user-types.html)
+[PREV](c6-functions.html) [INDEX](c1-intro.html) [NEXT](c8-user-types.html)

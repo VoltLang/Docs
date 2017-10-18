@@ -288,4 +288,4 @@ Next, some parting remarks and some useful tools.
 
 ---
 
-[PREV](c8-user-types.html) [NEXT](conclusion.html)
+[PREV](c8-user-types.html) [INDEX](c1-intro.html) [NEXT](conclusion.html)

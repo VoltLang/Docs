@@ -154,4 +154,4 @@ The error will only occur once someone tries to *call* those functions:
 
 ---
 
-[PREV](c5-statements.html) [NEXT](c7-attributes.html)
+[PREV](c5-statements.html) [INDEX](c1-intro.html) [NEXT](c7-attributes.html)

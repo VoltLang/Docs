@@ -452,4 +452,4 @@ If the user types a non-digit character, the program will crash. We'll cover how
 
 ---
 
-[PREV](c2-setup.html) [NEXT](c4-types-and-expressions.html)
+[PREV](c2-setup.html) [INDEX](c1-intro.html) [NEXT](c4-types-and-expressions.html)

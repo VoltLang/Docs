@@ -454,4 +454,4 @@ If you *wanted* `5 * 5 + 2` to mean `35`, you can wrap a part of an expression i
 
 ---
 
-[PREV](c3-steps.html) [NEXT](c5-statements.html)
+[PREV](c3-steps.html) [INDEX](c1-intro.html) [NEXT](c5-statements.html)

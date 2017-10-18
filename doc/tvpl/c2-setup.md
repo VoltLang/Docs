@@ -120,4 +120,4 @@ In programming, as in life, things often don't work how you'd expect. Before you
 
 ---
 
-[PREV](c1-intro.html) [NEXT](c3-steps.html)
+[PREV](c1-intro.html) [INDEX](c1-intro.html) [NEXT](c3-steps.html)

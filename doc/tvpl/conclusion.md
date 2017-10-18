@@ -20,4 +20,4 @@ Along with the core toolchain, there are a few other libraries and tools that yo
 
 ---
 
-[PREV](c8-user-types.html)
+[INDEX](c1-intro.html) [PREV](c8-user-types.html)

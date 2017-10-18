@@ -412,4 +412,4 @@ Output:
 
 ---
 
-[PREV](c4-types-and-expressions) [NEXT](c6-functions.html)
+[PREV](c4-types-and-expressions) [INDEX](c1-intro.html) [NEXT](c6-functions.html)
