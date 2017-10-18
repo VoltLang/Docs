@@ -265,6 +265,27 @@ Output:
 
 	6
 
+## Reverse Foreach
+
+`foreach_reverse` is like a regular `foreach`, except it goes from the end of a list to the beginning.
+
+	import watt.io;
+
+	fn main() i32
+	{
+		a := [1, 2, 3];
+		foreach_reverse (i; a) {
+			writeln(i);
+		}
+		return 0;
+	}
+
+Output:
+
+	3
+	2
+	1
+
 ## Switch Statement
 
 A `switch` statement runs code depending on its value. Similar to several `if` `else if` chains, but more compact.
