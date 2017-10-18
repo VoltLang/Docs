@@ -57,7 +57,7 @@ Output:
 
 ## Import Statement
 
-We touched on `import` statements earlier in chapter 3, but there's more too them than 'import watt.io'.  
+We touched on `import` statements earlier in chapter 3, but there's more to them than `import watt.io`.  
 At the top of this chapter we said that statements affect flow of execution. At first blush, this doesn't seem to be true of `import` statements; they don't *do* anything on their own, do they?
 
 In fact, an `import` statement modifies every single lookup of an identifier in the module. 'Import' is perhaps a slight misnomer, then, as what the `import` statement does is add a scope (a place where names are stored) to the places the compiler looks when you type a name that isn't a keyword or builtin type.
@@ -112,10 +112,6 @@ The `assert` statement verifies a condition. If the condition is false, the exec
 		assert(5 > 10, "but this one will");
 		return 0;
 	}
-
-## If Statement
-
-We covered this earlier, so here we'll mention something that's not entirely obvious. The 'truthiness' of an `if` statement is slightly more permissive than just assigning to a `bool` variable. Along with `true` and `false`, non zero integers are considered `true`, while zero is `false`.
 
 ## While Statement
 

@@ -239,8 +239,6 @@ j: i32 = i;
 
 The above is allowed, because `j` can not impact `i`'s value in any way.
 
-###
-
 ## Expressions
 
 ### Relational Operators
