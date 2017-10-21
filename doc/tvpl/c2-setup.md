@@ -85,7 +85,7 @@ Next, let's get the code for *Volta* (the compiler), and *Watt* (the standard li
 
 Create a new folder, `hello`. In this folder would go all the code and tests that make up the project. All we want to do is print a message to the screen.
 
-Save this code into a file called `hello.volt`, and put that in a `src` folder inside the `hello` folder.
+Save this code into a file called `main.volt`, and put that in a `src` folder inside the `hello` folder.
 
 	import watt.io;
 
