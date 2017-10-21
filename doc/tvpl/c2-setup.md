@@ -76,8 +76,8 @@ Now that the dependencies have been installed, let's set up a place to build *Vo
 
 Next, let's get the code for *Volta* (the compiler), and *Watt* (the standard library).
 
-	git clone git@github.com:VoltLang/Volta.git
-	git clone git@github.com:VoltLang/Watt.git
+	git clone https://github.com/VoltLang/Volta.git
+	git clone https://github.com/VoltLang/Watt.git
 
 ## Hello World!
 
