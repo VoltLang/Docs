@@ -405,6 +405,19 @@ The output will be:
 
 You can use functions from imported modules too. In fact, `import watt.io;` imports a module from the *Watt* standard library (a 'library' is a collection of useful modules) that contains the `writeln` function we've been using to output values!
 
+## Comments
+
+Comments is text that is ignored by the compiler, where you can put notes for yourself, or other people that will read your code. Volt has three kinds of comments:
+
+	// The single line comments applies from the '//' until the end of the line.
+
+	/* The multiline comments apply from the '/*', until
+	 * the closing sequences, which is that, but reversed.
+	 */
+	
+	/+ Nested multiline comments are like the above, but
+	 /+ they can be nested +/ this is still a comment. +/
+
 ## Getting Input
 
 Getting input typed from the user will be useful for some of the examples in the next chapter. We can use the `readln` function, also found in `watt.io` to get it. When `readln` is called, the program will stop and wait for the user to input some text and then press enter. Once they do, any text that they have written will be returned in a string.
