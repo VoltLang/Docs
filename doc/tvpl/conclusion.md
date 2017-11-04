@@ -18,6 +18,14 @@ Along with the core toolchain, there are a few other libraries and tools that yo
 
 [Amp](https://github.com/VoltLang/Amp) is a collection of maintained bindings to popular libraries, like SDL and OpenGL.
 
+# Appendices
+
+[Appendix 1](a1-cf-to-c.html) - Article comparing Volt to C.
+
+[Appendix 2](a2-cf-to-cpp.html) - Article comparing Volt to C++.
+
+[Appendix 3](a3-cf-to-d.html) - Article comparing Volt to D.
+
 ---
 
-[INDEX](c1-intro.html) [PREV](c8-user-types.html)
+[INDEX](c1-intro.html) [PREV](c8-user-types.html) [NEXT](a1-cf-to-c.html)

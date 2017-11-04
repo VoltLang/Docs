@@ -28,7 +28,7 @@ This guide is intended for close reading by beginning programmers, and for skimm
 
 [Chapter 8 - User Defined Types](c8-user-types.html) - Define your own types, and their behaviour.
 
-[Conclusion](conclusion.html) - Some parting remarks, and some useful links.
+[Conclusion & Appendices](conclusion.html) - Some parting remarks, and some useful links.
 
 ---
 
