@@ -54,6 +54,7 @@ To get the **size** of a type, first get the `TypeInfo` instance for that type u
 		ret: TypeInfo;  // For functions and delegates.
 		args: TypeInfo[];  // For functions and delegates.
 	}
+
 ---
 
 [CONCLUSION](conclusion.html) [PREV](a2-cf-to-cpp.html)
