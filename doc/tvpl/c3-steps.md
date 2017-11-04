@@ -165,7 +165,7 @@ Strings are series of characters. You've used these already. Strings like `"Janu
 
 Composable strings are a special kind of string that allows you to easily display the results of expression.
 
-	writefln("${2*3}");  // output:6
+	writeln("${2*3}");  // output:6
 
 A composable string looks like a regular string, except it contains a composable string component -- an expression, wrapped in `${` and `}`. In a regular composable string, everything has to be known at compile time. A constant, in other words.
 
@@ -173,7 +173,7 @@ However, it is very useful to be able to display runtime values. If you precede 
 
 	fn main(args: string[]) i32
 	{
-		writefln(new "${args.length * 2}");
+		writeln(new "${args.length * 2}");
 		return 0;
 	}
 
@@ -181,7 +181,7 @@ Composable strings can format arrays, associative arrays, `union`s, `struct`s, `
 
 	"${3+2}"          // "5"
 	"${Enum.Member}"  // "Member"
-	"${[1, 2, 3]}"    // "[1, 2, 3]"
+	new "${[1, 2, 3]}"// "[1, 2, 3]"
 
 But special note should be made of `union`, `struct`, and `class`es. By default, they'll just display the name of the type. But if a `toString` function is defined, that takes no arguments, and returns a string, then that function will be called and the result will be used.
 
@@ -341,7 +341,7 @@ Output:
 
 	Hello there...
 	Bob
-	Hello there....
+	Hello there...
 	Jenny
 
 ## Scope
