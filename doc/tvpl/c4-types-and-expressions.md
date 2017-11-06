@@ -171,11 +171,8 @@ A [pointer](https://en.wikipedia.org/wiki/Pointer_(computer_programming)) holds 
 
 An [associative array](https://en.wikipedia.org/wiki/Associative_array) associates 'keys' with 'values'. To declare a an associative array of T values, using J as a key, we would write `T[J]`.
 
-	bool[i32]  an associative array of bools keyed by i32
-		aa: bool[i32]
-		aa[32] = false;
-		writeln(aa[32])  // outputs 'false'
-	void*[string]  an associative array of pointers to void keyed by string
+	aa: bool[i32]  // an associative array of bools keyed by i32
+	void*[string]  // an associative array of pointers to void keyed by string
 
 #### Associative Array Literals
 
