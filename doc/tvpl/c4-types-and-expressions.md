@@ -176,7 +176,7 @@ An [associative array](https://en.wikipedia.org/wiki/Associative_array) associat
 
 #### Associative Array Literals
 
-Like the array literals, associative array literals open with `[`, have values separated by `,`, and end with `]`. The values of an associative array literal have the key and value separated by a `:` character. So `[1:"hello", 2:"goodbye"]` would be a `string[i32]`, that has a key of "hello" associated with 1, and so on.
+Like the array literals, associative array literals open with `[`, have values separated by `,`, and end with `]`. The values of an associative array literal have the key and value separated by a `:` character. So `[1:"hello", 2:"goodbye"]` would be a `string[i32]`, that has a value of "hello" associated with a key 1, and so on.
 
 ## Storage Type
 
