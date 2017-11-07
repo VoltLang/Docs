@@ -419,8 +419,8 @@ Usually, Volt won't let us assign a variable to another if the types aren't the 
 
 	a: i32;
 	b: i16;
-	a := b;  // This is okay, as any i16 can fit into the larger i32
-	b := a;  // Error: certain values of i32 may not fit into i16.
+	a = b;  // This is okay, as any i16 can fit into the larger i32
+	b = a;  // Error: certain values of i32 may not fit into i16.
 
 `cast` lets us say "we know what we're doing, assign anyway."
 
