@@ -483,9 +483,9 @@ The bitwise operators perform logical operations on a bit level. See the [wikipe
 
 `^` sets a bit if one and only one of the bits are set.
 
-	0b0000 | 0b0001  // 0b0001
-	0b0001 | 0b0001  // 0b0000
-	0b0000 | 0b0000  // 0b0001
+	0b0000 ^ 0b0001  // 0b0001
+	0b0001 ^ 0b0001  // 0b0000
+	0b0000 ^ 0b0000  // 0b0001
 
 `<<` shifts the bit pattern left by the number on the right.
 
