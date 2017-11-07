@@ -344,6 +344,7 @@ These return a `bool` value.
 		} else {
 			writeln("you didn't write 'banana'");
 		}
+		return 0;
 	}
 
 `!=` is the inequality operator. It's like `==`, but instead returns `true` if both sides are *not* the same, otherwise it returns `false`.
