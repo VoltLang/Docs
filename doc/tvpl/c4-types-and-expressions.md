@@ -386,9 +386,9 @@ Output:
 
 The `<=` returns true if the left side is less than or equal to the right, and `>=` returns true if the right side is greater than or equal to the right.
 
-	5 >= 4  false
+	5 >= 4  true
 	5 >= 5  true
-	5 >= 6  true
+	5 >= 6  false
 	4 <= 5  true
 	4 <= 4  true
 	4 <= 3  false
