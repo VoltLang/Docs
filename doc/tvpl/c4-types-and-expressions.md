@@ -214,7 +214,97 @@ Short of explicitly going over the type system's head by `cast`ing away `immutab
 
 ### Scope
 
-A `scope` value can be modified, but it cannot become non-`scope`. This is helpful in ensuring users don't pass stack memory or the like to something that will be stored away, thus leading to stack corruption.
+A `scope` value can be modified, but it cannot become non-`scope`. A `scope`d type has a list of restrictions on what can be done with it. These restrictions are to prevent a reference to a piece of memory escaping the lifetime of the scope they were declared in, so that the pointer doesn't become invalid.
+
+That last sentence may have looked like Martian to you. At first, `scope` seems like an excuse for the compiler to yell at you for no good reason, but there is a genuine use to it, so here's a concrete example.
+
+Say we're writing an API that takes a pointer to an `i32`, and doubles it (I didn't say it was a useful API).
+
+```volt
+import watt.io;
+
+fn processInteger(ip: i32*)
+{
+	*ip = *ip * 2;
+}
+
+fn apiUser()
+{
+	i := 32;
+	processInteger(&i);
+	writeln(i);  // output '64'
+}
+
+fn main() i32
+{
+	apiUser();
+	return 0;
+}
+```
+
+As long as the pointer the user passes in is valid when `processInteger` is called, nothing will go wrong. But say you produce version 2.0 of the API, and this version stores pointers, and then processes them in a batch, later on.
+
+```volt
+module test;
+
+import watt.io;
+
+global integers: i32*[];
+
+fn storeInteger(ip: i32*)
+{
+	integers ~= ip;
+}
+
+fn processIntegers()
+{
+	foreach (ip; integers) {
+		*ip = *ip * 2;
+		writeln(*ip);  // output ????
+	}
+}
+
+fn apiUser()
+{
+	i := 32;
+	storeInteger(&i);
+}
+
+fn main() i32
+{
+	apiUser();
+	processIntegers();
+	return 0;
+}
+```
+
+There's no real way to predict how this program will behave on your machine. On mine, it produces seemingly random numbers, but it could just as easily crash. What happens here is known as 'stack corruption', and is the source of many very difficult to debug errors. Let's break it down.
+
+The `i` variable, in `apiUser` is what is known as a 'stack' variable. The stack is an area of memory that functions use for temporary variables -- the local variables that don't use the GC, or any other form of memory allocation. Once you `return` from these functions, the memory is free to be reused somewhere else.
+
+But if some code, like `storeInteger` squirrels away that pointer, and then writes to it, all sorts of evil can happen. What `processIntegers` thinks it's writing to is the `i` variable -- that's what the pointer was pointing to when `storeInteger` was called, after all. But now, even though the pointer value hasn't changed, what it's pointing to has. In fact, it's likely (but not guaranteed) to be pointing to a point **in** `processInteger`, as it was called right next to `apiUser`. It's easy to see how this can lead to bugs, especially in larger programs where it's not obvious that this is happening. It leads to strange behaviours like functions jumping into the middle of other functions -- the programs can limp on for a long time, doing all sorts of damage, before they crash.
+
+Enter `scope`. If the pointer types above were instead marked as `scope`...
+
+```volt
+global integers: scope i32*[];
+
+fn storeInteger(ip: scope i32*)
+{
+	integers ~= ip;  // Error! Can't escape scope!
+}
+```
+
+If the pointer would leave the scope of the current function, e.g. assigning to a `global` variable as in the above example, the compiler will complain. This is why inline functions are typed as `scoped dg` -- they refer to the stack frame of the current function, so storing and calling them outside of that frame can lead to stack corruption.
+
+So in addition to a `scope` value being disallowed from being implicitly converted to a non `scope` value, a `scope` value may not be assigned somewhere outside of the current function, and it may not be `return`ed, even if being `return`ed as a `scope` type.
+
+```volt
+fn storeInteger(ip: scope i32*) scope i32*
+{
+	return ip;  // Error! Can't escape scope!
+}
+```
 
 ### Mutable Indirection.
 
