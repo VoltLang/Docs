@@ -78,7 +78,29 @@ And in another module:
 
 `protected` is an access level that only occurs in `class` declarations (see [Chapter 8](c8-user-types.html)). To the outside world, `protected` behaves like `private`, in that it restricts access to `protected` symbols.
 
-What makes it different is it allows child classes to see `protected` symbols. That is to say, if `class A` in `module a` defines a `private` method, `class B` in `module b` couldn't call that method, and neither could `fn bfunc` in `module b`. But if it defines a `protected` method, `class B` could call it, while `bfunc` could not.
+What makes it different is it allows child classes to see `protected` symbols. That is to say, if `class A` in `module a` defines a `private` method, `class B` in `module b` couldn't call that method, and neither could `fn bfunc` in `module b`. But if it defines a `protected` method, `class B` could call it, while `bfunc` could not. Note that this applies to methods and `global` functions that are declared inside of functions. Given
+
+```volt
+module a;
+class A
+{
+	protected global fn foo() i32 ...
+}
+```
+
+In one module, and if in another module we have:
+
+```volt
+module b;
+class B : A
+{
+	global fn bar() i32 { return A.foo(); /* okay */ }
+}
+class C /* doesn't inherit from A */
+{
+	global fn bar() i32 { return A.foo(); /* error */ }
+}
+```
 
 ## Access Levels And Overloading
 
