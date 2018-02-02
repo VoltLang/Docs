@@ -282,10 +282,6 @@ e.g. `s[0] -= 5` is rewritten to `s.opIndexAssign(0, s.opIndex(0) - 5)`.
 
 `-` uses `fn opNeg()`. Note that this is the unary minus (`a := -obj;`), not the binary subtraction operator.
 
-# Wrapping Up
-
-Next, some parting remarks and some useful tools.
-
 ---
 
-[PREV](c8-user-types.html) [INDEX](c1-intro.html) [NEXT](conclusion.html)
+[PREV](c7-attributes.html) [INDEX](c1-intro.html) [NEXT](c9-templates.html)

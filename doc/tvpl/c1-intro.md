@@ -28,6 +28,8 @@ This guide is intended for close reading by beginning programmers, and for skimm
 
 [Chapter 8 - User Defined Types](c8-user-types.html) - Define your own types, and their behaviour.
 
+[Chapter 9 - Templates](c9-templates.html) - Write code for handling multiple types with one piece of code.
+
 [Conclusion & Appendices](conclusion.html) - Some parting remarks, and some useful links.
 
 ---
