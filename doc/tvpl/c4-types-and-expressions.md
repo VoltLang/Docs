@@ -393,6 +393,11 @@ The `<=` returns true if the left side is less than or equal to the right, and `
 	4 <= 4  true
 	4 <= 3  false
 
+The relational comparison operators function on arrays, too. The first than determines the ordering. If one array is shorter than the other, but equal in other respects it evaluates 'less' than the longer array. That is to say,
+
+	"aaaa" < "aaaaaaaa"  true
+	"b"    < "aaaaaaaa"  false
+
 ### Logical Operators
 
 `&&` returns true if both sides are true.
