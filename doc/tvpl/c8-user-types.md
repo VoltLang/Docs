@@ -6,6 +6,67 @@ layout: page
 
 Volt has several facilities for users to create more complex custom types.
 
+## Enums
+
+An enum is one or more constants.
+They are perhaps the simplest user defined type, but they come in many forms.
+
+```volt
+enum
+{
+	A,
+	B,
+	C,
+	D = 4,
+}
+```
+
+The outer body is the enum, and the inner members are called 'enum declarations'. In this case, `A` is `0`, `B` is `1`, and `C` is `2`, and `D` is `4` all typed as `i32`.
+
+If an enum isn't given an explicit base type, it uses `i32`. If a member isn't given an explicit assign (like `D`) above, then if it is the first member it is as if it were `= 0`, and then for all following members it is as if it were `= <the previous enum declaration> + 1`. So if we were to add `E` to our enum above, it would get the value `D + 1`, or `5`.
+
+We can give a name to our enum, and explicitly set the base type (the type that all the enum declarations are).
+
+```volt
+enum Name : i64
+{
+	Declaration = 32,
+}
+```
+
+And so in the above case, `Name.Declaration` is an `i64` with a value of `32`.
+
+Since enums have to be known at compile time, they're a convenient way of declaring constants. There is a shortcut syntax that allows you to simply declare individual enum declarations:
+
+```volt
+enum ErrorCode = 1;
+enum ErrorString = "hello";
+enum i64 val = 32;
+```
+
+The compiler will infer the type from the assign expression, or you can explicitly set it by writing it after `enum`. You can use non integer based enums in regular enums too:
+
+```volt
+enum ErrorMessages
+{
+	FileNotFound = "file not found",
+	OutOfMemory  = "out of memory",
+}
+```
+
+Naturally, if the enum base is not an integer, then every assign statement must be filled in. That is to say, this wouldn't fly:
+
+```volt
+enum ErrorMessages
+{
+	FileNotFound = "file not found",
+	OutOfMemory  = "out of memory",
+	UnknownError  // Error, no assign!
+}
+```
+
+Other than that, the usual enum restriction of the assign expressions being evaluable at compile time applies.
+
 ## Structs
 
 A struct is a bunch of variables bundled with functions that operate on those variables.
