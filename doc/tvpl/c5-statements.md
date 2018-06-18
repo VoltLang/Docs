@@ -227,7 +227,32 @@ Anything else not mentioned above (other than `bool` expressions) will generated
 
 ## Foreach Statement
 
-We've been introduced to the `foreach` statement. Here's a different form that is often useful:
+We've been introduced to the `foreach` statement. In general:
+
+```volt
+foreach (indexVariable, iterationVariable; whatWeIterateOver) {
+}
+```
+
+For arrays, the `indexVariable` is a `size_t` that contains the number of times the loop has been completed; `0` the first time, `1` the second time, and so on. The `iterationVariable` will be a variable of the base type of the array being iterated over. If it's a variable of type `i32[]`, then the iteration variable will be of type `i32`.
+
+Iterating over an associative array has the same form, but the variables take on slightly different meanings. The `indexVariable` will contain a key, and the `iterationVariable` will contain the value associated with that key.
+
+```volt
+aa: bool[string];
+aa["apple"] = true;
+aa["banana"] = false;
+foreach (key, value; aa) {
+	writeln(new "'${key}':${value}");
+}
+```
+Output (the order may differ on different OSs and runtimes):
+```
+'apple':true
+'banana':false
+```
+
+Here's a different form that is often useful:
 
 	import watt.io;
 	
@@ -247,7 +272,15 @@ Output:
 	3
 	4
 
-If you declare the foreach variable as `ref`, if you modifiy the iteration variable, you'll modify what you're iterating over.
+If you don't need the value of the range, and just need a loop to iterate an arbitrary amount of times, you can omit the iteration variable entirely:
+
+```volt
+foreach (0 .. 10) {
+	// run 10 times
+}
+```
+
+If you declare the iteration variable as `ref`, if you modifiy it, you'll modify what you're iterating over.
 
 	import watt.io;
 	
