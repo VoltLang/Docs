@@ -8,9 +8,9 @@ Templates are a way of reusing one piece of code, using different types and cons
 
 Using a template requires two parts: a template definition, and a template instance. This is a one:many relationship; one template definition may be the code behind multiple template instances.
 
-Currently there are two kinds of templates supported: struct and functions.
+Templates are supported for functions, structs, classes, unions, and interfaces.
 
-## Structs
+## Aggregates
 
 Let's say we wrote a simple linked list for `i32`s:
 
@@ -73,7 +73,9 @@ max := OurDataEntry.Max;
 v: OurDataEntry.Key;
 ```
 
-## Function
+Using templates with classes, unions, or interfaces is just like we did there, except use `class`, `union`, or `interface` respectively instead of `struct`, for both the instantiation and definition.
+
+## Functions
 
 The other type of template are standalone functions. There's nothing really different here in how you use them.
 
