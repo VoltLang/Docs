@@ -152,6 +152,67 @@ We used these last chapter. To declare an array of type T, we would write `T[]`.
 	bool[]    an array of bools.
 	i16[][][] an array of an array of an array of i16s.
 
+#### Strings
+
+You've seen these. They're arrays of characters.
+
+```volt
+month := "January";  // month is of type string
+```
+
+The type definition of `string` is simple:
+
+```volt
+alias string = immutable(char)[];
+```
+
+`alias` creates a shorthand way of referring to a type. Using `string` or `immutable(char)[]` is the same, and the compiler will generate the same code for either. `immutable` means you can't change the portion in parens:
+
+```volt
+a: string = "hello";
+a[0] = 'H';  // Error!
+```
+
+You can, however, change the array:
+
+```volt
+a: string = "hello";
+a = "H" ~ "ello";  // Hello
+```
+
+Volt strings are arrays of UTF-8 codepoints. Using unicode correctly deserves a document all of its own, but don't assume everything is ASCII. It may seem, for example, that the `length` parameter is counting letters, but that's not true. The `length` of `"world"` may be `5`, but the length of `世界` is not `2`, but `6`, because despite being made of `2` characters, it's `6` bytes of UTF-8. Use the `count` function in `watt.text.utf` if you want to count 'characters', and don't assume that the Nth index into a string will get you the Nth character.
+
+`\` escapes a string and lets you put special characters into a string:
+
+```volt
+writeln("hello\\\nworld");
+```
+
+would display
+
+```volt
+hello\
+world
+```
+
+You can create raw strings if you need to use a lot of backslashes, for regexes and Windows paths:
+
+```volt
+r"C:\Users\Steve"
+`C:\Users\Steve`
+```
+
+Three backticks gets you a multiline string:
+
+    ```
+    hello
+    world
+    this
+    is a multiline
+    string
+    ```
+
+
 #### Array Literals
 
 The `[` character denotes the start of the array literal. Values are separated by the `,` character, and the literal ends with the `]` character:
@@ -327,6 +388,61 @@ j: i32 = i;
 The above is allowed, because `j` can not impact `i`'s value in any way.
 
 ## Expressions
+
+Expressions perform an operation on one or more values.
+
+### Arithmetic
+
+The simplest expressions are the basic math operations. `+`, `-`, `*`, and `/`. Or, addition, subtraction, multiplication, and division, respectively.
+
+```volt
+a := 5 + 3;  // 8
+b := 5 - 3;  // 2
+c := 5 * 3;  // 15
+d := 5 / 3;  // 1
+```
+
+If you've not dealt with integer math before, you were probably nodding your head right up to the last example there. Integers are whole numbers, with no pesky fractional portions like `1`, `23`, `0`, or `-42`. If you divide two integers with `/`, you will get 'integer division' -- the fractional portion will be 'chopped off' (effectively rounding down to the nearest integer, never up)
+
+```volt
+a := 10 / 6;  // 1
+b := 2 / 5;   // 0
+```
+
+Dividing by zero will cause your program to crash. If you want to represent a number with its fractional portion intact, you'll need a floating point number (also known as a real):
+
+```volt
+a := 10.0 / 6.0;  // 1.666666666666667 (ish)
+```
+
+If either side of the division operation is a real, then floating point division will be used, and the type of the operation will either be `f32` or `f64`.
+
+One other operator that's not quite as well known, but very useful is the modulo operator, `%` which returns the *remainder* of a division operation.
+
+```volt
+a := 10 % 4;  // 2
+b := 10 % 5;  // 0
+```
+
+You'll often see this used to determine if a value is even or odd:
+
+```volt
+fn isEven(n: i32) bool
+{
+	return n % 2 == 0;
+}
+```
+
+### Concatenation
+
+In many languages, if you want to concatenate (stick) two strings together, you would use the `+` operator. Volt uses a separator operator altogether, `~` -- the concatenation operator:
+
+```volt
+a := "hello " ~ "world"  // "hello world"
+b ~= " nice.";  // "hello world nice."
+```
+
+Note that `~` requires the language runtime to allocate memory for a new string, and concatenating in a loop can be suprisingly slow because of this. If you find yourself doing a lot of string concatenation, the `StringSink` `struct` in `watt.text.sink` is worth using.
 
 ### Relational Operators
 
