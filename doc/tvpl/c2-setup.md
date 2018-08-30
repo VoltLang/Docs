@@ -53,11 +53,11 @@ If you're not using Homebrew, download LLVM from the [LLVM homepage](http://llvm
 
 ### Windows Dependency Installation
 
-Install [DMD.](http://dlang.org/download.html).
+Install [DMD](http://dlang.org/download.html).
 
 Install [Microsoft Visual Studio Community](https://www.visualstudio.com), for free. Microsoft has a habit of changing URLs monthly, so you'll have to click around for the download page. We believe in you!
 
-Install [Cmake.](https://cmake.org/) and use it to compile the [LLVM](llvm.org) source code. [LLVM have more detailed documentation on how to do this.](http://llvm.org/docs/CMake.html) Be sure to compile in 'Release' mode; 'Debug' LLVM builds have a tendency to crash on Windows.
+Install [Cmake.](https://cmake.org/) and use it to compile the [LLVM](llvm.org) source code. [LLVM have more detailed documentation on how to do this.](http://llvm.org/docs/CMake.html) Be sure to compile in 'Release' mode; 'Debug' LLVM builds have a tendency to crash on Windows. Also compile with `LLVM_BUILD_LLVM_C_DYLIB` set to `ON` (LLVM 8 and up). Yes, `DYLIB`. It compiles a DLL on windows, don't worry. [Be sure to compile clang, too](http://clang.llvm.org/get_started.html). Compiling LLVM and Clang might sound a bit scary, and this is something that we're actively working towards removing from the process (we added the `LLVM_BUILD_LLVM_C_DYLIB` flag and script for Windows, and we're going to try to ensure that it'll be included with newer LLVM binary distributions, for example). But for now, this is what needs to be done. Building LLVM and Clang with Visual Studio is actually quite simple, as they don't need much more than a C++ compiler and a Python 2.6 install.
 
 Install [NASM.](http://www.nasm.us/). Ensure that it is available on your `%PATH%`.
 
@@ -78,6 +78,37 @@ Next, let's get the code for *Volta* (the compiler), and *Watt* (the standard li
 
 	git clone https://github.com/VoltLang/Volta.git
 	git clone https://github.com/VoltLang/Watt.git
+
+### Additional Windows Setup
+
+At the moment, there are a few extra steps needed on Windows. As mentioned before, we're working to make these go away in the future.
+
+On the unix-like platforms, we call `llvm-conf` to figure out what version of LLVM we're running (no need to get into details, but for various reasons Volta needs to know the version to work properly and to provide the most features). `llvm-conf` isn't a thing on Windows, so we have to give the `LLVM` version explicitly.
+
+To figure out the version of LLVM you're using, pass the version you get from running `clang --version` with the clang you want to use with Volta. The version will be a number with three sections, separated by dots, like `3.8.0`, or `7.0.0`, immediately after the output `clang version`.
+
+Then, in the cloned Volta directory, next to the `battery.toml` file, open your text editor and create a new file named `llvm.toml`. And fill it in with:
+
+```
+llvmVersion="X.Y.Z"  # This is the version you just got from clang --version.
+clangPath="C:/Path/To/Clang.exe"
+```
+
+Filling in the details as appropriate. For example, at the time of writing my `llvm.toml` is as follows:
+
+```
+llvmVersion="8.0.0"
+clangPath="D:/Bin/Llvm/clang.exe"
+```
+
+Then, open `battery.toml` and at the bottom, if there isn't one already, add a `[platform.msvc]` section and add the path to your `LLVM-C.lib` file.
+
+```
+[platform.msvc]
+libraries = ["D:/Path/To/LLVM-C.lib"]  # Replace this path!
+```
+
+Then, so long as the `LLVM-C.DLL` that you built is in your `PATH` somewhere, you should be good to go!
 
 ## Hello World!
 
