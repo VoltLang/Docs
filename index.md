@@ -7,9 +7,9 @@ Gettings started
 ---
  * [The Volt Programming Language](doc/tvpl/c1-intro.html), a guided tour through Volt, from setup to code.
  * [Code style](doc/code-style.html), language wide style guide.
- * [Volt vs C](doc/tvpl/a1-cf-to-c.html), langauge comparison.
- * [Volt vs C++](doc/tvpl/a2-cf-to-cpp.html), langauge comparison.
- * [Volt vs D](doc/tvpl/a3-cf-to-d.html), langauge comparison.
+ * [Volt vs C](doc/tvpl/a1-cf-to-c.html), language comparison.
+ * [Volt vs C++](doc/tvpl/a2-cf-to-cpp.html), language comparison.
+ * [Volt vs D](doc/tvpl/a3-cf-to-d.html), language comparison.
 
 Language
 ---
