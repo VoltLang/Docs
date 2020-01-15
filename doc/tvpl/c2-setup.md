@@ -30,7 +30,7 @@ If you are on Ubuntu or a derivative,
 
 will install what you need. If you're on *Arch Linux*,
 
-	sudo pacman -S dmd llvm nasm git
+	sudo pacman -S dmd llvm nasm git clang gdc
 
 will do it. Otherwise consult your OS documentation on how to install these packages.
 
@@ -66,6 +66,8 @@ Finally, [download and install git.](https://git-scm.com/download/win) Make sure
 ### Getting Battery
 
 Download [Battery](https://github.com/VoltLang/Battery/releases), Volt's build tool. Make sure it's on your `PATH`.
+
+If you're on *Arch Linux* you can install [battery from the AUR](https://aur.archlinux.org/packages/battery/) with an [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers).
 
 ### Getting The code
 
@@ -116,7 +118,7 @@ Then, so long as the `LLVM-C.DLL` that you built is in your `PATH` somewhere, yo
 
 Create a new folder, `hello`. In this folder would go all the code and tests that make up the project. All we want to do is print a message to the screen.
 
-Save this code into a file called `main.volt`, and put that in a `src` folder inside the `hello` folder.
+Inside of `hello`, create a new `src` folder, this is where your code will go. Save the code under into a file called `main.volt` inside the `src` folder.
 
 	import watt.io;
 
@@ -126,10 +128,17 @@ Save this code into a file called `main.volt`, and put that in a `src` folder in
 		return 0;
 	}
 
-Then save the following in the root of the folder in a file called `battery.txt`.
+Then save the following in the root of the folder in a file called `battery.toml`.
 
-	--dep
-	watt
+	name = "hello"
+	dependencies = ["watt"]
+
+Your folder structure should now look like this:
+
+	hello/
+	├── src/
+	│	└── main.volt
+	└── battery.toml
 
 For more information on Battery, check out [its documentation](https://github.com/VoltLang/Battery/blob/master/doc/index.md).
 
