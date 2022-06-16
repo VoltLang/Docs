@@ -13,7 +13,7 @@ Gettings started
 
 Language
 ---
-The language [page](doc/volt.html) is the main documentation for the langauge. Shortcuts to [lexical](doc/volt.html#lexical), [module](doc/volt.html#module) and [simple types](doc/volt.html#simple-types).
+The language [page](doc/volt.html) is the main documentation for the language. Shortcuts to [lexical](doc/volt.html#lexical), [module](doc/volt.html#module) and [simple types](doc/volt.html#simple-types).
 
 Compiler
 ---
