@@ -50,6 +50,10 @@ A literal starting with `0x` is a [hexadecimal](https://en.wikipedia.org/wiki/He
 
 	0xFF  (same as 255)
 
+Hex literals can specify that they are a specific integer type (`i8`, `i16`, `i32`, `i64`, `u8`, `u16`, `u32`, or `u64`) by appending an underscore and that type to the integer literal.
+
+	var := 0x10_u8;  // The type of var is 'u8'.
+
 A literal starting with `0b` is a [binary](https://en.wikipedia.org/wiki/Binary_number) literal:
 
 	0b10  (same as 2)
