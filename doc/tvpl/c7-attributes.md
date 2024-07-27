@@ -111,6 +111,29 @@ Multiple functions with the same name, different arguments, but different access
 
 The only exceptions are constructors. This is because a `private` constructor is a way of 'disabling' a constructor.
 
+## Other Attributes
+
+### Properties
+
+You can mark a function with `@property` if it takes one argument, or no arguments with a non-`void` return value.
+
+```
+class Person {
+	string _name;
+	@property string name() {
+		return _name;
+	}
+	@property void name(string n) {
+		_name = n;
+	}
+}
+
+...
+	auto p = new Person();
+	p.name = "Selma";  // Calls second function as name("Selma").
+	string s = p.name; // Calls first function as name();
+```
+
 ---
 
 [PREV](c6-functions.html) [INDEX](c1-intro.html) [NEXT](c8-user-types.html)
