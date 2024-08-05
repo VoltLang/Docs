@@ -418,6 +418,39 @@ Comments is text that is ignored by the compiler, where you can put notes for yo
 	/+ Nested multiline comments are like the above, but
 	 /+ they can be nested +/ this is still a comment. +/
 
+## Associative Arrays
+
+Associative arrays allow us to associate one type with another type, and look up values quickly.
+
+    ages: i32[string];
+	ages["fred"] = 22;
+	ages["sally"] = 23;
+	writefln("Fred is %s years old.", ages["fred"]);
+
+We say that `ages` is an associative array with a "key" of `string` and a "value" of `i32`. Different languages have different names for these: you may have used or heard of "dictionaries", "maps", or "hash maps".
+
+If a key does not exist in the array, an exception will be thrown. You can check if a key exists by using an `in` expression, which returns a pointer to the element if it exists, or `null` otherwise.
+
+	if (age := "simon" in ages) {
+		writefln("Simon is %s years old.", *age);
+	}
+
+Associative arrays also have the `get` method which takes a key, and a default value to return if that key is not present.
+
+    i := ages.get("mr. nobody", 42);  // i is 42
+
+We can use the `foreach` statement to iterate over associative arrays too.
+
+    foreach (key, value; ages) {
+		writefln("%s is %s years old", key, value);
+	}
+
+The order of iteration is unspecified; values may appear in any order, and that order may change from run to run (or after inserting new keys).
+
+You can specify the initial contents with an associative array literal.
+
+    numbersSeen: bool[i32] = [1:true, 2:false, 3:true];
+
 ## Getting Input
 
 Getting input typed from the user will be useful for some of the examples in the next chapter. We can use the `readln` function, also found in `watt.io` to get it. When `readln` is called, the program will stop and wait for the user to input some text and then press enter. Once they do, any text that they have written will be returned in a string.
